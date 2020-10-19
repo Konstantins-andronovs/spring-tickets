@@ -52,7 +52,7 @@ public class TicketServiceImpl implements TicketService {
 
         double totalPrice = list.stream()
                 .map(TicketItem::getPrice)
-                .map(item -> item.round(new MathContext(2, RoundingMode.HALF_UP)))
+                .map(item -> item.round(new MathContext(4, RoundingMode.HALF_UP)))
                 .mapToDouble(BigDecimal::doubleValue)
                 .sum();
 

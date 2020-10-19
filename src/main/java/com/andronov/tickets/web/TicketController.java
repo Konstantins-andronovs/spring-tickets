@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -33,7 +34,7 @@ public class TicketController {
 //    @PreAuthorize("hasRole('MANAGER')")
     @PostMapping(value = "/tickets", consumes = "application/json", produces = "application/json")
     public @ResponseBody
-    ResponseEntity<TicketResponseDTO> approveLoan(@RequestBody TicketRequestDTO ticketRequestDTO) {
+    ResponseEntity<TicketResponseDTO> approveLoan(@Valid @RequestBody TicketRequestDTO ticketRequestDTO) {
 //        try {
             return ResponseEntity.ok(ticketService.getDraftPrices(ticketRequestDTO));
 //        } catch (ManagerNotPermittedException e) {
