@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -13,8 +12,9 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 public class TicketResponseDTO implements Serializable {
+    private static final long serialVersionUID = -4468780156598999712L;
 
-    private List<TicketItem> ticketPrices;
+    private List<TicketResponseUnitDTO> tickets;
     private double totalPrice;
 
 }

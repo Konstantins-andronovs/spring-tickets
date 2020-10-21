@@ -1,7 +1,8 @@
 package com.andronov.tickets.unit.services;
 
-import com.andronov.tickets.repository.PriceRepository;
-import com.andronov.tickets.service.PriceServiceImpl;
+import com.andronov.tickets.exceptions.models.DataFetchingException;
+import com.andronov.tickets.repositories.PriceRepository;
+import com.andronov.tickets.services.PriceServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,7 +24,7 @@ public class PriceServiceTest {
     private PriceServiceImpl priceService;
 
     @Test
-    void retrievedDraftPricesHaveCorrectTotalSum() {
+    void retrievedDraftPricesHaveCorrectTotalSum() throws DataFetchingException {
         BigDecimal basePrice = new BigDecimal("10.00");
         when(priceRepository.getByTerminalName(any(String.class))).thenReturn(basePrice);
 

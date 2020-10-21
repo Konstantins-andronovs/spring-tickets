@@ -1,7 +1,8 @@
 package com.andronov.tickets.unit.services;
 
-import com.andronov.tickets.repository.VATRepository;
-import com.andronov.tickets.service.VATServiceImpl;
+import com.andronov.tickets.exceptions.models.DataFetchingException;
+import com.andronov.tickets.repositories.VATRepository;
+import com.andronov.tickets.services.VATServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,7 +23,7 @@ public class VATServiceTest {
     private VATServiceImpl vatService;
 
     @Test
-    void retrievedDraftPricesHaveCorrectTotalSum() {
+    void retrievedDraftPricesHaveCorrectTotalSum() throws DataFetchingException {
         BigDecimal VAT = new BigDecimal("0.21");
         when(vatRepository.getVAT()).thenReturn(VAT);
 

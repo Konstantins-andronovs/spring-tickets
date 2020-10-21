@@ -1,4 +1,4 @@
-package com.andronov.tickets.repository;
+package com.andronov.tickets.repositories;
 
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +17,6 @@ public class VATRepository {
     }
 
     public BigDecimal getVAT() {
-        return vatData.getOrDefault(LocalDate.now(), BigDecimal.ZERO);
+        return vatData.getOrDefault(LocalDate.now(), null);
     }
 }

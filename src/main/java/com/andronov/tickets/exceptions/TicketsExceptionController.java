@@ -1,5 +1,7 @@
-package com.andronov.tickets.exception;
+package com.andronov.tickets.exceptions;
 
+import com.andronov.tickets.exceptions.models.ErrorModel;
+import com.andronov.tickets.exceptions.models.DataFetchingException;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpHeaders;
@@ -41,6 +43,13 @@ public class TicketsExceptionController extends ResponseEntityExceptionHandler {
                 .map(violation -> violation.getPropertyPath() + ": " + violation.getMessage())
                 .collect(Collectors.toList());
         return getExceptionResponseEntity(HttpStatus.BAD_REQUEST, request, validationErrors);
+    }
+
+    @ExceptionHandler({DataFetchingException.class})
+    public ResponseEntity<ErrorModel> handleVatFetching(DataFetchingException ex) {
+        ErrorModel error = new ErrorModel(HttpStatus.BAD_REQUEST, "Error fetching data", ex.getMessage());
+
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
     private ResponseEntity<Object> getExceptionResponseEntity(final HttpStatus status, WebRequest request, List<String> errors) {
