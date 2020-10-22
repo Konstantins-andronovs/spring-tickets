@@ -59,6 +59,8 @@ public class TicketServiceImpl implements TicketService {
                 .mapToDouble(BigDecimal::doubleValue)
                 .sum();
 
+        this.cache.clear();
+
         return new TicketResponseDTO(list, totalPrice);
     }
 
